@@ -1,0 +1,19 @@
+{
+  "name": "devchance-portfolio",
+  "version": "1.0.0",
+  "description": "My portfolio website",
+  "main": "index.js",
+  "dependencies": {
+    "node-sass": "^4.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "sass": "node-sass -w scss/ -o dist/css --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "DevChance-V1"
+  },
+  "author": "Chancellor White",
+  "license": "MIT"
+}
