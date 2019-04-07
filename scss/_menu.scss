@@ -39,3 +39,116 @@
             }
   }
 }
+
+// Menu Overlay
+.menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  opacity: 1;
+  visibility: hidden;
+
+  // Makes the menu visible
+  &.show {
+    visibility: visible;
+  }
+
+  // Splits into 2 sides: Branding &
+  &-branding,
+  &-nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    float: left;
+    width: 50%;
+    height: 100vh;
+    overflow: hidden;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column wrap;
+            flex-flow: column wrap;
+  }
+
+  &-nav {
+    margin: 0;
+    padding: 0;
+    background: darken($primary-color, 5);
+    list-style: none;
+    -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+            @include  easeOut;
+
+    &.show {
+      // Slide down from top
+      -webkit-transform: translate3d(0,0,0);
+              transform: translate3d(0,0,0);
+    }
+  }
+
+  &-branding {
+    background: $primary-color;
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+    @include  easeOut;
+
+    &.show {
+      // Slide up from bottom
+      -webkit-transform: translate3d(0,0,0);
+              transform: translate3d(0,0,0);
+    }
+
+    .portrait {
+      width: 250px;
+      height: 250px;
+      background: url('../dist/img/my-profile.jpg');
+      border-radius: 50%;
+      border: solid 3px $secondary-color;
+    }
+  }
+
+  .nav-item {
+    -webkit-transform: translate3d(600px, 0, 0);
+            transform: translate3d(600px, 0, 0);
+            @include easeOut;
+
+    &.show {
+      // Slide in from right
+      -webkit-transform: translate3d(0,0,0);
+              transform: translate3d(0,0,0);
+    }
+
+    &.current > a {
+      color: $secondary-color;
+    }
+
+    .nav-link {
+      display: inline-block;
+      position: relative;
+      font-size: 30px;
+      text-transform: uppercase;
+      padding: 1rem 0;
+      font-weight: 300;
+      color: #fff;
+      text-decoration: none;
+      @include easeOut;
+
+      &:hover {
+        color: $secondary-color;
+      }
+    }
+  }
+}
+
+// Delay each nav item slide by 0.1s
+@for $x from 1 through 4 {
+  .nav-item:nth-child(#{$x}) {
+    -webkit-transition-delay: $x * 0.1s;
+            transition-delay: $x * 0.1s;
+  }
+}
